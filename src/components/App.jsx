@@ -64,7 +64,7 @@ function App() {
 
   const handleUpdateUser = ({ name, about }) => {
     return api
-      .updateUser({ name, about })
+      .updateProfile(name, about)
       .then(() => {
         setCurrentUser({
           ...currentUser,
@@ -85,6 +85,7 @@ function App() {
       <div className="page">
         <Header />
         <Main
+          cards={cards}
           onEditAvatarClick={handleEditAvatarClick}
           onAddPlaceClick={handleAddPlaceClick}
           onEditProfileClick={handleEditProfileClick}
@@ -92,39 +93,11 @@ function App() {
           onClose={closeAllPopups}
           selectedCard={selectedCard}
         />
-        <PopupWithForm
-          name={"edit-profile"}
-          title={"Editar perfil"}
-          buttonTitle={"Guardar"}
+        <EditProfile
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-        >
-          <>
-            <input
-              className="popup__info popup__info_name"
-              type="text"
-              placeholder="Nombre"
-              required
-              id="name"
-              name="name"
-              minLength="2"
-              maxLength="40"
-            />
-            <span className="popup__error popup__error_name"></span>
-            <input
-              className="popup__info popup__info_about"
-              type="text"
-              placeholder="Acerca de mi"
-              required
-              id="about"
-              name="about"
-              minLength="2"
-              maxLength="200"
-            />
-            <span className="popup__error popup__error_about"></span>
-          </>
-        </PopupWithForm>
-
+          onUpdateUser={handleUpdateUser}
+        />
         <PopupWithForm
           name={"add-image"}
           title={"Nuevo Lugar"}

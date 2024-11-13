@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import PopupWithForm from "./PopupWithForm";
 
-export default function EditProfile() {
+export default function EditProfile(props) {
   const userContext = useContext(CurrentUserContext);
   const { currentUser, handleUpdateUser } = userContext;
   const [name, setName] = useState(CurrentUserContext.name);
@@ -20,7 +20,7 @@ export default function EditProfile() {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleUpdateUser({ name, about: description });
+    props.onUpdateUser({ name, about: description });
   }
 
   useEffect(() => {
@@ -32,8 +32,8 @@ export default function EditProfile() {
     <PopupWithForm
       name={"edit-profile"}
       title={"Edital perfil"}
-      isOpen={isOpen}
-      onClose={onClose}
+      isOpen={props.isOpen}
+      onClose={props.onClose}
       onSubmit={handleSubmit}
       noValidate
     >
@@ -67,9 +67,6 @@ export default function EditProfile() {
         />
         <span className="popup__error" id="owner-description-error"></span>
       </label>
-      <button className="button popup__button" type="submit">
-        Save
-      </button>
     </PopupWithForm>
   );
 }

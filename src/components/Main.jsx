@@ -17,7 +17,7 @@ export default function Main({
   onClose,
   selectedCard,
 }) {
-  const { CurrentUser } = useContext(CurrentUserContext);
+  const CurrentUser = useContext(CurrentUserContext);
 
   return (
     <>
@@ -63,7 +63,7 @@ export default function Main({
           <ImagePopup selectedCard={selectedCard} onClose={onClose} />
         )}
         <section className="elements">
-          {/* {cards.map((item, index) => {
+          {cards.map((item, index) => {
             return (
               <Card
                 card={item}
@@ -73,7 +73,7 @@ export default function Main({
                 ImagePopup={selectedCard}
               />
             );
-          })} */}
+          })}
         </section>
       </main>
     </>

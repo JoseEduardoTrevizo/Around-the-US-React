@@ -1,4 +1,5 @@
 import TrashButton from "../images/Trash.png";
+import { useContext } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 export default function Card({ card, onCardClick, currentUser }) {
   function handleClick() {
@@ -11,7 +12,7 @@ export default function Card({ card, onCardClick, currentUser }) {
     <div className="element">
       <div className="elements-card">
         <img
-          src={CurrentUser?.link}
+          src={card.link}
           alt={card.name}
           className="elements-card__element elements-card__element_image"
           id="image_card"

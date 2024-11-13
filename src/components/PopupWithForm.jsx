@@ -1,6 +1,7 @@
 import CloseIcon from "../images/Close_Icon.png";
 import React from "react";
 export default function PopupWithForm({
+  onSubmit,
   name,
   title,
   buttonTitle,
@@ -16,6 +17,7 @@ export default function PopupWithForm({
         >
           <div className="popup__overlay"></div>
           <form
+            onSubmit={onSubmit}
             className={`form form_${name} ${
               name === `avatar-button` ? `avatar__form` : ``
             } `}
