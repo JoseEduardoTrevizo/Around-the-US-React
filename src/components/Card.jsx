@@ -1,12 +1,21 @@
 import TrashButton from "../images/Trash.png";
 import { useContext } from "react";
+import api from "../utils/api";
 import CurrentUserContext from "../contexts/CurrentUserContext";
-export default function Card({ card, onCardClick, currentUser }) {
+export default function Card({ card, onCardClick, onCardLike }) {
   function handleClick() {
     onCardClick(card);
   }
 
-  const { CurrentUser } = useContext(CurrentUserContext);
+  const handleLikeClick = () => {
+    onCardLike(card);
+  };
+
+  /*Verifica una vez más si a esta tarjeta ya les has dado like */
+  const isLiked = card.isLiked;
+  const cardLikeButtonClassName = `elements-name__place_like ${
+    isLiked ? "elements-name__place_like_active" : ""
+  }`;
 
   return (
     <div className="element">
@@ -29,7 +38,10 @@ export default function Card({ card, onCardClick, currentUser }) {
           {card.name}
         </h2>
         <div>
-          <button className="elements-name__place elements-name__place_like"></button>
+          <button
+            className={cardLikeButtonClassName}
+            onClick={handleLikeClick}
+          ></button>
           <p className="element__counter">{card.likes.length}</p>
         </div>
       </div>

@@ -21,6 +21,22 @@ function App() {
     setSelectedCard(card);
   }
 
+  async function handleCardLike(card) {
+    /*Verifica una vez más si a esta tarjeta ya les has dado like */
+    const isLiked = card.isLiked;
+    /*Envía una solicitud a la API y obtén los datos actualizados de la tarjeta */
+    await api
+      .addCardLike(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard._id === card._id ? newCard : currentCard
+          )
+        );
+      })
+      .catch((error) => console.error(error));
+  }
+
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
   };
@@ -90,6 +106,7 @@ function App() {
           onAddPlaceClick={handleAddPlaceClick}
           onEditProfileClick={handleEditProfileClick}
           onCardClick={handleCardClick}
+          onCardLike={handleCardLike}
           onClose={closeAllPopups}
           selectedCard={selectedCard}
         />
