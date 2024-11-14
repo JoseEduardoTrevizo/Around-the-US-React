@@ -66,11 +66,13 @@
 .popup__info_about {
   border-bottom: solid #c4c4c4;
   position: absolute;
+  left: 0px;
   margin: 169px 36px 0px;
 }
 .popup__info_name {
   border-bottom: solid #c4c4c4;
   position: absolute;
+  left: 0px;
   margin: 112px 36px 0px;
 }
 

@@ -2,7 +2,7 @@ import TrashButton from "../images/Trash.png";
 import { useContext } from "react";
 import api from "../utils/api";
 import CurrentUserContext from "../contexts/CurrentUserContext";
-export default function Card({ card, onCardClick, onCardLike }) {
+export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   function handleClick() {
     onCardClick(card);
   }
@@ -11,11 +11,16 @@ export default function Card({ card, onCardClick, onCardLike }) {
     onCardLike(card);
   };
 
+  const handleDeleteClick = () => {
+    onCardDelete(card);
+  };
   /*Verifica una vez más si a esta tarjeta ya les has dado like */
   const isLiked = card.isLiked;
+  console.log(isLiked);
   const cardLikeButtonClassName = `elements-name__place_like ${
     isLiked ? "elements-name__place_like_active" : ""
   }`;
+  console.log(cardLikeButtonClassName);
 
   return (
     <div className="element">

@@ -7,6 +7,7 @@ export default function EditProfile(props) {
   const { currentUser, handleUpdateUser } = userContext;
   const [name, setName] = useState(CurrentUserContext.name);
   const [description, setDescription] = useState(CurrentUserContext.about);
+  const [loading, setLoading] = useState(false);
 
   const handleNameChange = (evt) => {
     setName(evt.target.value); /* actualiza name cuando cambie la entrada*/
@@ -20,6 +21,7 @@ export default function EditProfile(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    setLoading(true);
     props.onUpdateUser({ name, about: description });
   }
 
@@ -31,15 +33,16 @@ export default function EditProfile(props) {
   return (
     <PopupWithForm
       name={"edit-profile"}
-      title={"Edital perfil"}
+      title={"Editar perfil"}
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
+      buttonTitle={loading ? "Guardando..." : "Guardar"}
       noValidate
     >
       <label className="popup__label">
         <input
-          className="popup__input popup__input_type_name"
+          className="popup__info popup__info_name"
           id="name"
           maxLength="40"
           minLength="2"
@@ -54,7 +57,7 @@ export default function EditProfile(props) {
       </label>
       <label className="popup__label">
         <input
-          className="popup__input popup__input_type_description"
+          className="popup__info popup__info_about"
           id="owner-description"
           maxLength="200"
           minLength="2"

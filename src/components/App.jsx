@@ -16,6 +16,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [userAvatar, setUserAvatar] = useState("");
   const [cards, setCards] = useState([]);
+  const [deleteCard, setDeleteCard] = useState({});
 
   function handleCardClick(card) {
     setSelectedCard(card);
@@ -27,6 +28,23 @@ function App() {
     /*Envía una solicitud a la API y obtén los datos actualizados de la tarjeta */
     await api
       .addCardLike(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard._id === card._id ? newCard : currentCard
+          )
+        );
+      })
+      .catch((error) => console.error(error));
+  }
+
+  async function handleCardDelete(card) {
+    /* Verifica una vez más si a esta tarjeta ya les has dado like */
+    const isDelete = card.isDelete;
+
+    /* Envía una solicitud a la API y obtén los datos actualizados de la tarjeta */
+    await api
+      .deleteCard(card._id, !isDelete)
       .then((newCard) => {
         setCards((state) =>
           state.map((currentCard) =>
