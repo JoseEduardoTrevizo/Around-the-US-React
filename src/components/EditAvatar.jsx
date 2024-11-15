@@ -16,7 +16,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
 
   return (
     <PopupWithForm
-      name={"avatar-button"}
+      name={"change-avatar"}
       title={"Cambiar foto de perfil"}
       buttonTitle={loading ? "Guardando..." : "Guardar"}
       isOpen={isOpen}
@@ -24,7 +24,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       onSubmit={handleSubmit}
     >
       <input
-        className="popup__form-input popup__form-input-avatar"
+        className="popup changeProfile__inputChange"
         type="url"
         name="avatar"
         placeholder="Ingrese el nuevo enlace"

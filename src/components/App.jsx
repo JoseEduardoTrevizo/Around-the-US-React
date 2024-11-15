@@ -3,6 +3,7 @@ import Main from "../components/Main";
 import Footer from "./Footer";
 import Card from "./Card";
 import EditProfile from "./EditProfile";
+import EditAvatarPopup from "./EditAvatar";
 import PopupWithForm from "./PopupWithForm";
 import { useState, useEffect } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
@@ -114,6 +115,20 @@ function App() {
       });
   };
 
+  const handleUpdateAvatar = (avatar) => {
+    return api
+      .editAvatar(avatar)
+      .then((updateUser) => {
+        setCurrentUser(updateUser);
+      })
+      .then(() => {
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -164,25 +179,11 @@ function App() {
           </>
         </PopupWithForm>
 
-        <PopupWithForm
-          name={"change-avatar"}
-          title={"Cambiar foto de perfil"}
-          buttonTitle={"Guardar"}
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
-        >
-          <>
-            <input
-              className="changeProfile__inputChange"
-              type="url"
-              required
-              name="avatar"
-              placeholder="Enlace a la imagen"
-              id="input_link"
-            />
-            <span className="popup__error popup__error_link"></span>
-          </>
-        </PopupWithForm>
+          onUpdateAvatar={handleUpdateAvatar}
+        />
 
         <Footer />
       </div>

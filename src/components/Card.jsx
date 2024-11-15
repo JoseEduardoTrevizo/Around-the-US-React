@@ -14,14 +14,22 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const handleDeleteClick = () => {
     onCardDelete(card);
   };
+  const currentUser = useContext(CurrentUserContext);
+  const isOwn = card.owner._id === CurrentUserContext._id;
+  const likesCounter = card.likes.length;
+  console.log(likesCounter);
   /*Verifica una vez más si a esta tarjeta ya les has dado like */
-  const isLiked = card.isLiked;
+  const isLiked = card._id.like;
   console.log(isLiked);
   const cardLikeButtonClassName = `elements-name__place_like ${
     isLiked ? "elements-name__place_like_active" : ""
   }`;
-  console.log(cardLikeButtonClassName);
 
+  const cardDeleteButtonClassName = `elements-card__element_trash ${
+    isOwn
+      ? "elements-card__element_trash"
+      : "elements-card__element_trash_hiden"
+  }`;
   return (
     <div className="element">
       <div className="elements-card">
@@ -35,7 +43,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
         <img
           src={TrashButton}
           alt="Trash"
-          className="elements-card__element elements-card__element_trash"
+          className={cardDeleteButtonClassName}
         />
       </div>
       <div className="elements-name">
@@ -47,7 +55,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
             className={cardLikeButtonClassName}
             onClick={handleLikeClick}
           ></button>
-          <p className="element__counter">{card.likes.length}</p>
+          <p className="element__counter">{likesCounter}</p>
         </div>
       </div>
     </div>

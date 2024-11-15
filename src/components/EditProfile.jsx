@@ -1,10 +1,8 @@
-import { useState, useContext, useEffect } from "react";
+import { useState } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import PopupWithForm from "./PopupWithForm";
 
 export default function EditProfile(props) {
-  const userContext = useContext(CurrentUserContext);
-  const { currentUser, handleUpdateUser } = userContext;
   const [name, setName] = useState(CurrentUserContext.name);
   const [description, setDescription] = useState(CurrentUserContext.about);
   const [loading, setLoading] = useState(false);
@@ -24,11 +22,6 @@ export default function EditProfile(props) {
     setLoading(true);
     props.onUpdateUser({ name, about: description });
   }
-
-  useEffect(() => {
-    setName(currentUser?.name);
-    setDescription(currentUser?.about);
-  }, [currentUser]);
 
   return (
     <PopupWithForm
