@@ -15,6 +15,7 @@ export default function Main({
   onEditAvatarClick,
   onCardClick,
   onCardLike,
+  onCardDelete,
   onClose,
   selectedCard,
 }) {
@@ -71,6 +72,7 @@ export default function Main({
                 key={index}
                 onCardClick={onCardClick}
                 onCardLike={onCardLike}
+                onCardDelete={onCardDelete}
                 onClose={onClose}
                 ImagePopup={selectedCard}
               />

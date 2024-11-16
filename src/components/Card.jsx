@@ -55,6 +55,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
           src={TrashButton}
           alt="Trash"
           className={cardDeleteButtonClassName}
+          onClick={handleDeleteClick}
         />
       </div>
       <div className="elements-name">

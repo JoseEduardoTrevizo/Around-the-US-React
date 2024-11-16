@@ -5,6 +5,7 @@ import Card from "./Card";
 import EditProfile from "./EditProfile";
 import EditAvatarPopup from "./EditAvatar";
 import NewCardPopup from "./NewCard";
+import ConfirmationPopup from "./Confirmation";
 import PopupWithForm from "./PopupWithForm";
 import { useState, useEffect } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
@@ -14,11 +15,12 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isConfirmationPopupOpen, setIsConfirmationPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [userAvatar, setUserAvatar] = useState("");
   const [cards, setCards] = useState([]);
-  const [deleteCard, setDeleteCard] = useState({});
+  const [deletedCard, setDeletedCard] = useState({});
 
   useEffect(() => {
     document.addEventListener("keydown", (evt) => {
@@ -65,19 +67,9 @@ function App() {
 
   async function handleCardDelete(card) {
     /* Verifica una vez más si a esta tarjeta ya les has dado like */
-    const isDelete = card.isDelete;
-
+    setDeletedCard(card);
+    setIsConfirmationPopupOpen(true);
     /* Envía una solicitud a la API y obtén los datos actualizados de la tarjeta */
-    await api
-      .deleteCard(card._id, !isDelete)
-      .then((newCard) => {
-        setCards((state) =>
-          state.map((currentCard) =>
-            currentCard._id === card._id ? newCard : currentCard
-          )
-        );
-      })
-      .catch((error) => console.error(error));
   }
 
   useEffect(() => {
@@ -125,6 +117,15 @@ function App() {
       });
   };
 
+  const handleSubmitConfirmation = () => {
+    if (deletedCard) {
+      api.deleteCard(deletedCard._id).then(() => {
+        setCards((state) => state.filter((c) => c._id !== deletedCard._id));
+        closeAllPopups();
+      });
+    }
+  };
+
   const handleUpdateAvatar = (avatar) => {
     return api
       .editAvatar(avatar)
@@ -167,6 +168,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setSelectedCard(false);
+    setIsConfirmationPopupOpen(false);
   };
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -181,6 +183,7 @@ function App() {
           onCardLike={handleCardLike}
           onClose={closeAllPopups}
           selectedCard={selectedCard}
+          onCardDelete={handleCardDelete}
         />
 
         <EditProfile
@@ -200,7 +203,12 @@ function App() {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
         />
-
+        <ConfirmationPopup
+          isOpen={isConfirmationPopupOpen}
+          onClose={closeAllPopups}
+          onCardDelete={handleSubmitConfirmation}
+          card={selectedCard}
+        />
         <Footer />
       </div>
     </CurrentUserContext.Provider>
