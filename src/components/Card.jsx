@@ -1,5 +1,5 @@
 import TrashButton from "../images/Trash.png";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import api from "../utils/api";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
@@ -8,19 +8,20 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   }
 
   const handleLikeClick = () => {
-    onCardLike(card);
+    onCardLike(card, isLiked);
   };
 
   const handleDeleteClick = () => {
     onCardDelete(card);
   };
   const currentUser = useContext(CurrentUserContext);
-  const isOwn = card.owner._id === CurrentUserContext._id;
+  const isOwn = card.owner._id === currentUser.userId;
+
   const likesCounter = card.likes.length;
-  console.log(likesCounter);
+
   /*Verifica una vez más si a esta tarjeta ya les has dado like */
-  const isLiked = card._id.like;
-  console.log(isLiked);
+  const isLiked = card.likes.some((like) => like._id === currentUser._id);
+
   const cardLikeButtonClassName = `elements-name__place_like ${
     isLiked ? "elements-name__place_like_active" : ""
   }`;
@@ -30,6 +31,16 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
       ? "elements-card__element_trash"
       : "elements-card__element_trash_hiden"
   }`;
+
+  /*
+  useEffect(() => {
+    console.log("owner", card.owner._id);
+    console.log("likesCounter", likesCounter);
+    console.log("isLiked", isLiked);
+    console.log("currentuser", currentUser._id);
+  }, []);
+  */
+
   return (
     <div className="element">
       <div className="elements-card">
