@@ -23,11 +23,6 @@ function App() {
     document.addEventListener("keydown", (evt) => {
       evt.key === "Escape" && closeAllPopups();
     });
-    const handleClickOutside = (evt) => {
-      if (evt.target === document.querySelector(".popup__overlay")) {
-        closeAllPopups();
-      }
-    };
   }, []);
 
   function handleCardClick(card) {
