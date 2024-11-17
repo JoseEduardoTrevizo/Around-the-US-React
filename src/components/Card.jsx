@@ -1,6 +1,5 @@
 import TrashButton from "../images/Trash.png";
-import { useContext, useEffect } from "react";
-import api from "../utils/api";
+import { useContext } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   function handleClick() {
@@ -31,15 +30,6 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
       ? "elements-card__element_trash"
       : "elements-card__element_trash_hiden"
   }`;
-
-  /*
-  useEffect(() => {
-    console.log("owner", card.owner._id);
-    console.log("likesCounter", likesCounter);
-    console.log("isLiked", isLiked);
-    console.log("currentuser", currentUser._id);
-  }, []);
-  */
 
   return (
     <div className="element">

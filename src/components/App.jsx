@@ -1,12 +1,10 @@
 import Header from "./Header";
 import Main from "../components/Main";
 import Footer from "./Footer";
-import Card from "./Card";
 import EditProfile from "./EditProfile";
 import EditAvatarPopup from "./EditAvatar";
 import NewCardPopup from "./NewCard";
 import ConfirmationPopup from "./Confirmation";
-import PopupWithForm from "./PopupWithForm";
 import { useState, useEffect } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import api from "../utils/api";
@@ -18,7 +16,6 @@ function App() {
   const [isConfirmationPopupOpen, setIsConfirmationPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [userAvatar, setUserAvatar] = useState("");
   const [cards, setCards] = useState([]);
   const [deletedCard, setDeletedCard] = useState({});
 
