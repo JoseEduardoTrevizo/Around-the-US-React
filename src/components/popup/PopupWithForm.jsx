@@ -1,4 +1,4 @@
-import CloseIcon from "../../../../images/Close_Icon.png";
+import CloseIcon from "../../images/Close_Icon.png";
 import React from "react";
 export default function PopupWithForm({
   onSubmit,
