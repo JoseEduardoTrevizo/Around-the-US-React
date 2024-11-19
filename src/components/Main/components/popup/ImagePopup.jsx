@@ -1,4 +1,4 @@
-import CloseIcon from "../images/Close_Icon.png";
+import CloseIcon from "../../../../images/Close_Icon.png";
 export default function ImagePopup({ selectedCard, onClose }) {
   if (!selectedCard) {
     return null;

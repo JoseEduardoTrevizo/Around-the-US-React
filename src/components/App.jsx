@@ -1,10 +1,10 @@
 import Header from "./Header";
 import Main from "../components/Main";
 import Footer from "./Footer";
-import EditProfile from "./EditProfile";
-import EditAvatarPopup from "./EditAvatar";
-import NewCardPopup from "./NewCard";
-import ConfirmationPopup from "./Confirmation";
+import EditProfile from "../components/Main/components/popup/EditProfile";
+import EditAvatarPopup from "../components/Main/components/popup/EditAvatar";
+import NewCardPopup from "../components/Main/components/popup/NewCard";
+import ConfirmationPopup from "./Main/components/popup/RemoveCard";
 import { useState, useEffect } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import api from "../utils/api";
