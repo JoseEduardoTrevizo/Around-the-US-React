@@ -1,7 +1,7 @@
 import ImageVector from "../images/Vector.png";
 import ImageEdit from "../images/Edit_Button.png";
 import ImageAdd from "../images/Add_Button.png";
-import ImagePopup from "./Main/components/popup/ImagePopup";
+import ImagePopup from "./Main/components/popup/ImagePopup/ImagePopup";
 import { useContext } from "react";
 import Card from "../components/Main/components/card/Card";
 import CurrentUserContext from "../contexts/CurrentUserContext";
