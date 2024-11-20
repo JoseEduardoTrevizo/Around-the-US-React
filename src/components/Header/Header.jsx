@@ -1,4 +1,4 @@
-import HeadertLogo from "../images/logo.png";
+import HeadertLogo from "../../images/logo.png";
 export default function Header() {
   return (
     <header className="header">

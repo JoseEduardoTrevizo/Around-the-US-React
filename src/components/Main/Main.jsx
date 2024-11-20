@@ -1,10 +1,10 @@
-import ImageVector from "../images/Vector.png";
-import ImageEdit from "../images/Edit_Button.png";
-import ImageAdd from "../images/Add_Button.png";
-import ImagePopup from "../components/popup/ImagePopup/ImagePopup";
+import ImageVector from "../../images/Vector.png";
+import ImageEdit from "../../images/Edit_Button.png";
+import ImageAdd from "../../images/Add_Button.png";
+import ImagePopup from "./components/popup/ImagePopup/ImagePopup";
 import { useContext } from "react";
-import Card from "../components/card/Card";
-import CurrentUserContext from "../contexts/CurrentUserContext";
+import Card from "./components/card/Card";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import React from "react";
 
 export default function Main({

@@ -1,6 +1,6 @@
-import TrashButton from "../../images/Trash.png";
+import TrashButton from "../../../../images/Trash.png";
 import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../../../contexts/CurrentUserContext";
 export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   function handleClick() {
     onCardClick(card);
