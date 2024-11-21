@@ -3,7 +3,7 @@ import ImageEdit from "../../images/Edit_Button.png";
 import ImageAdd from "../../images/Add_Button.png";
 import ImagePopup from "./components/Popup/ImagePopup";
 import { useContext } from "react";
-import Card from "./components/card/Card";
+import Card from "./components/Card/Card";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import React from "react";
 
