@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PopupWithForm from "../Popup";
+import Popup from "../Popup";
 
 export default function ConfirmationPopup({
   isOpen,
@@ -15,7 +15,7 @@ export default function ConfirmationPopup({
   };
 
   return (
-    <PopupWithForm
+    <Popup
       title={"¿Estas seguro?"}
       name={"confirmation"}
       buttonTitle={loading ? "Eliminando..." : "Estoy seguro"}

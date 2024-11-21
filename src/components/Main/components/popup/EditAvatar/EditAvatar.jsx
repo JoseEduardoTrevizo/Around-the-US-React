@@ -1,8 +1,8 @@
 import { useRef } from "react";
-import PopupWithForm from "../Popup";
+import Popup from "../Popup";
 import { useState } from "react";
 
-export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+export default function EditAvatar({ isOpen, onClose, onUpdateAvatar }) {
   const avatarRef = useRef();
   const [loading, setLoading] = useState(false);
 
@@ -15,7 +15,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   }
 
   return (
-    <PopupWithForm
+    <Popup
       name={"change-avatar"}
       title={"Cambiar foto de perfil"}
       buttonTitle={loading ? "Guardando..." : "Guardar"}
@@ -33,6 +33,6 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
         ref={avatarRef}
       />
       <span className="form__error_avatar form__error"></span>
-    </PopupWithForm>
+    </Popup>
   );
 }

@@ -2,8 +2,8 @@ import Header from "./Header/Header";
 import Main from "./Main/Main";
 import Footer from "./Footer/Footer";
 import EditProfile from "./Main/components/Popup/EditProfile/EditProfile";
-import EditAvatarPopup from "./Main/components/Popup/EditAvatar/EditAvatar";
-import NewCardPopup from "../components/Main/components/Popup/NewCard/NewCard";
+import EditAvatar from "./Main/components/Popup/EditAvatar/EditAvatar";
+import NewCard from "../components/Main/components/Popup/NewCard/NewCard";
 import ConfirmationPopup from "../components/Main/components/Popup/RemoveCard/RemoveCard";
 import { useState, useEffect } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
@@ -180,13 +180,13 @@ function App() {
           onUpdateUser={handleUpdateUser}
         />
 
-        <NewCardPopup
+        <NewCard
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onUpdateNewCard={handleAddPlaceSubmit}
         />
 
-        <EditAvatarPopup
+        <EditAvatar
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}

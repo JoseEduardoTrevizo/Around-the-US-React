@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CurrentUserContext from "../../../../../contexts/CurrentUserContext";
-import PopupWithForm from "../Popup";
+import Popup from "../Popup";
 
 export default function EditProfile(props) {
   const [name, setName] = useState(CurrentUserContext.name);
@@ -24,7 +24,7 @@ export default function EditProfile(props) {
   }
 
   return (
-    <PopupWithForm
+    <Popup
       name={"edit-profile"}
       title={"Editar perfil"}
       isOpen={props.isOpen}
@@ -63,6 +63,6 @@ export default function EditProfile(props) {
         />
         <span className="popup__error" id="owner-description-error"></span>
       </label>
-    </PopupWithForm>
+    </Popup>
   );
 }

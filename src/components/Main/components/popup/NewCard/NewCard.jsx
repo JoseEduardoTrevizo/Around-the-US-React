@@ -1,8 +1,8 @@
 import { useRef } from "react";
-import PopupWithForm from "../Popup";
+import Popup from "../Popup";
 import { useState } from "react";
 
-export default function NewCardPopup({ isOpen, onClose, onUpdateNewCard }) {
+export default function NewCard({ isOpen, onClose, onUpdateNewCard }) {
   const titleRef = useRef();
   const linkRef = useRef();
   const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ export default function NewCardPopup({ isOpen, onClose, onUpdateNewCard }) {
   }
 
   return (
-    <PopupWithForm
+    <Popup
       name={"add-image"}
       title={"Nuevo Lugaar"}
       buttonTitle={loading ? "Guardando..." : "Guardar"}
@@ -47,6 +47,6 @@ export default function NewCardPopup({ isOpen, onClose, onUpdateNewCard }) {
         ref={linkRef || ""}
       />
       <span className="popup__error popup__error_link"></span>
-    </PopupWithForm>
+    </Popup>
   );
 }
