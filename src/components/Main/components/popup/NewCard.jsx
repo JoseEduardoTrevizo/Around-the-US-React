@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import PopupWithForm from "../Popup";
+import PopupWithForm from "./Popup";
 import { useState } from "react";
 
 export default function NewCardPopup({ isOpen, onClose, onUpdateNewCard }) {

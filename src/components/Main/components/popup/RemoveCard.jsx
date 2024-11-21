@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PopupWithForm from "../Popup";
+import PopupWithForm from "./Popup";
 
 export default function ConfirmationPopup({
   isOpen,
