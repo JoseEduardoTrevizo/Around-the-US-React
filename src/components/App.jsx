@@ -54,14 +54,12 @@ function App() {
         })
         .catch((error) => console.error(error));
     }
-    /*Envía una solicitud a la API y obtén los datos actualizados de la tarjeta */
   }
 
   async function handleCardDelete(card) {
     /* Verifica una vez más si a esta tarjeta ya les has dado like */
     setDeletedCard(card);
     setIsConfirmationPopupOpen(true);
-    /* Envía una solicitud a la API y obtén los datos actualizados de la tarjeta */
   }
 
   useEffect(() => {
