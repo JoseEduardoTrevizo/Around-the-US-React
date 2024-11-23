@@ -11,7 +11,9 @@
 .popup_is-opened {
   display: block;
 }
-
+.popup_popup {
+  display: none;
+}
 .popup__overlay {
   position: fixed;
   top: 0;

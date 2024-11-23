@@ -3,8 +3,7 @@ import ImageEdit from "../../images/Edit_Button.png";
 import ImageAdd from "../../images/Add_Button.png";
 import ImagePopup from "./components/Popup/ImagePopup/ImagePopup";
 import { useContext } from "react";
-import Popup from "./components/Popup/Popup";
-
+import Popup from "../Main/components/Popup/Popup";
 import Card from "./components/Card/Card";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import React from "react";
@@ -80,7 +79,7 @@ export default function Main({
             );
           })}
         </section>
-        <Popup isOpen={false} />
+        <Popup name={"popup"} />
       </main>
     </>
   );
