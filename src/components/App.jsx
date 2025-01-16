@@ -8,6 +8,16 @@ import ConfirmationPopup from "../components/Main/components/Popup/RemoveCard/Re
 import { useState, useEffect } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import api from "../utils/api";
+import {
+  Route,
+  Routes,
+  Navigate,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
+import Login from "./Main/components/login/Login";
+import Register from "./Main/components/register/Register";
+import InfoToolTip from "./Main/components/infoToolTip/InfoToolTip";
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -18,6 +28,14 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [deletedCard, setDeletedCard] = useState({});
+  const [isRegister, setIsRegister] = useState(true);
+  const [open, setOpen] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState({ userEmail: "", password: "" });
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     document.addEventListener("keydown", (evt) => {
@@ -158,6 +176,12 @@ function App() {
     setSelectedCard(false);
     setIsConfirmationPopupOpen(false);
   };
+
+  const handleLogin = ({ userEmail, password }) => {
+    if (!userEmail || password) {
+      return;
+    }
+  };
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -197,6 +221,21 @@ function App() {
           onCardDelete={handleSubmitConfirmation}
           card={selectedCard}
         />
+
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+
+        <Routes>
+          <Route path="/register" element={<Register />} />
+        </Routes>
+
+        <InfoToolTip
+          open={open}
+          isRegister={isRegister}
+          handleClose={handleClose}
+        />
+
         <Footer />
       </div>
     </CurrentUserContext.Provider>
