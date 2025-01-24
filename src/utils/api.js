@@ -148,6 +148,22 @@ class Api {
   }
 }
 
+export const getUserInfo = (token) => {
+  return fetch(
+    "https://se-register-api.en.tripleten-services.com/v1/users/me",
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer${token}`,
+      },
+    }
+  ).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  });
+};
+
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/web-es-cohort-15",
   headers: {

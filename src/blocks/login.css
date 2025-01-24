@@ -3,10 +3,9 @@
   justify-content: center;
   color: white;
   margin: 0 auto;
-  column-gap: 20px;
+  padding: 0;
   font-family: "Inter", Arial, sans-serif;
   align-items: center;
-  padding-bottom: 4%;
   display: flex;
   max-width: 880px;
 }
@@ -28,19 +27,30 @@
   color: #fff;
   position: absolute;
   top: 60px;
-  right: 100px;
+  right: 320px;
+}
+.header__user-email {
+  font-family: Inter;
+  font-size: 18px;
+  color: #fff;
+  position: absolute;
+  top: 60px;
+  right: 320px;
 }
 
 .login__form {
   display: flex;
-
   flex-direction: column;
   align-items: center;
   width: 500px;
 }
 .title__login {
-  margin: 60px 0 40px 0;
+  margin: 40px 0 40px 0;
+  display: flex;
   font-size: 24px;
+  width: 100%;
+  max-width: 358px;
+  justify-content: center;
 }
 
 .login__form-input {
@@ -66,7 +76,7 @@
   width: 100%;
   padding: 10px 0 10px 0;
   margin-bottom: 15px;
-  width: 358px;
+  max-width: 358px;
   height: 50px;
   cursor: pointer;
 }
@@ -76,4 +86,38 @@
   font-size: 14px;
   text-decoration: none;
   color: #fff;
+}
+
+@media screen and (max-width: 340px) {
+  .login__form {
+    max-width: 330px;
+  }
+  .title__login {
+    max-width: 260px;
+    margin: 0 0px 40px 0;
+  }
+
+  .login__form-fieldset {
+    width: 340px;
+    display: flex;
+    justify-content: center;
+  }
+  .login__form-input {
+    max-width: 260px;
+    margin: auto;
+  }
+  .login__header-register {
+    position: absolut;
+    top: 34px;
+    right: 40px;
+    font-size: 14px;
+  }
+  .login__button {
+    max-width: 260px;
+    margin: 143px auto 20px;
+  }
+  .login__register-link {
+    max-width: 260px;
+    margin: 0 0 42px 15px;
+  }
 }

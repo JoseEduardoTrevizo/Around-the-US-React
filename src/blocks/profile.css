@@ -132,3 +132,9 @@
     margin: auto;
   }
 }
+@media screen and (max-width: 340px) {
+  .header {
+    max-width: 340px;
+    margin: 0;
+  }
+}

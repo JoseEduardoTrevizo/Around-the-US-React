@@ -14,12 +14,12 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
     onCardDelete(card);
   };
   const currentUser = useContext(CurrentUserContext);
-  const isOwn = card.owner._id === currentUser.userId;
+  const isOwn = card.owner.userId === currentUser.userId;
 
   const likesCounter = card.likes.length;
 
   /*Verifica una vez más si a esta tarjeta ya les has dado like */
-  const isLiked = card.likes.some((like) => like._id === currentUser._id);
+  const isLiked = card.likes.some((like) => like.userId === currentUser.userId);
 
   const cardLikeButtonClassName = `elements-name__place_like ${
     isLiked ? "elements-name__place_like_active" : ""

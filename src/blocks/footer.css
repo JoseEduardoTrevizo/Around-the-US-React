@@ -20,3 +20,11 @@
     padding-top: 48px;
   }
 }
+@media screen and (max-width: 340px) {
+  .footer {
+    padding-top: 0;
+  }
+  .copyright__footer_author {
+    padding-top: 0;
+  }
+}

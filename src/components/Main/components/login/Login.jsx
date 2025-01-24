@@ -3,23 +3,24 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../../../blocks/login.css";
 
-export default function Login({ handleLogin }) {
+export default function Login({ onLogin }) {
   const [data, setData] = useState({
-    userEmail: "",
+    email: "",
     password: "",
   });
 
   const handleChanges = (e) => {
-    const { mail, value } = e.target;
+    const { name, value } = e.target;
     setData((prevData) => ({
       ...prevData,
-      [mail]: value,
+      [name]: value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin(data);
+    console.log(data);
+    onLogin(data);
   };
 
   return (
@@ -37,10 +38,10 @@ export default function Login({ handleLogin }) {
           <fieldset className="login__form-fieldset">
             <input
               className="login__form-input"
-              name="e-mail"
+              name="email"
               placeholder="E-mail"
-              type="text"
-              value={data.userEmail}
+              type="email"
+              value={data.email}
               id="email"
               required
               onChange={handleChanges}

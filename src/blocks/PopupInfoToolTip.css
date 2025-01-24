@@ -1,8 +1,10 @@
-.popups {
-  opacity: 0;
-  display: block;
+.popup {
+  visibility: hidden;
   z-index: 3;
   position: fixed;
+}
+.popup_opened {
+  visibility: visible;
 }
 .popup_register {
   width: 430px;
@@ -20,9 +22,9 @@
   z-index: 1;
   transform: translate(-50%, -50%);
   position: fixed;
-  top: 40%;
+  top: 50%;
   left: 50%;
-  width: 430px;
+  max-width: 430px;
   height: 330px;
 }
 .popup_register-title {
@@ -53,4 +55,16 @@
 .popup__image-button-cross:hover {
   opacity: 0.7;
   cursor: pointer;
+}
+@media screen and (max-width: 340px) {
+  .popup__wrapper-register {
+    max-width: 280px;
+    max-height: 308px;
+    left: 40%;
+    top: 330px;
+  }
+  .popup__button-cross {
+    right: 42%;
+    top: -20%;
+  }
 }

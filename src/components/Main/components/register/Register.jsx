@@ -3,23 +3,23 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../../../blocks/login.css";
 
-export default function Register({ handleLogin }) {
+export default function Register({ onRegister }) {
   const [data, setData] = useState({
     userEmail: "",
     password: "",
   });
 
   const handleChanges = (e) => {
-    const { mail, value } = e.target;
+    const { name, value } = e.target;
     setData((prevData) => ({
       ...prevData,
-      [mail]: value,
+      [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleLogin(data);
+    onRegister(data);
   };
 
   return (
@@ -27,7 +27,7 @@ export default function Register({ handleLogin }) {
       <div className="login">
         <div className="login__header-container">
           <div className="login__header">
-            <Link to="/register" className="login__header-register">
+            <Link to="/login" className="login__header-register">
               Iniciar sesion
             </Link>
           </div>
@@ -37,14 +37,14 @@ export default function Register({ handleLogin }) {
           <fieldset className="login__form-fieldset">
             <input
               className="login__form-input"
-              name="e-mail"
+              name="userEmail"
               placeholder="E-mail"
-              type="text"
+              type="email"
               value={data.userEmail}
               id="email"
               required
               onChange={handleChanges}
-            ></input>
+            />
             <span></span>
             <input
               className="login__form-input"
@@ -55,14 +55,14 @@ export default function Register({ handleLogin }) {
               id="password"
               required
               onChange={handleChanges}
-            ></input>
+            />
             <span></span>
             <button className="login__button" type="submit">
               Registrate
             </button>
           </fieldset>
         </form>
-        <Link className="login__register-link" to="/register">
+        <Link className="login__register-link" to="/login">
           ¿Ya eres miembro? Inicia sesion aqui
         </Link>
       </div>
