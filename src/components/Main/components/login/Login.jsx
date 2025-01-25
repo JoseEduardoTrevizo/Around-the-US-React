@@ -19,7 +19,6 @@ export default function Login({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
     onLogin(data);
   };
 

@@ -9,13 +9,7 @@ import { useState, useEffect } from "react";
 
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import api from "../utils/api";
-import {
-  Route,
-  Routes,
-  Navigate,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Main/components/login/Login";
 import Register from "./Main/components/register/Register";
 import InfoToolTip from "./Main/components/infoToolTip/InfoToolTip";
@@ -36,7 +30,7 @@ function App() {
   const [open, setOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [email, setEmail] = useState("");
+  const [userEmail, setEmail] = useState("");
 
   const navigate = useNavigate();
   const handleClose = () => {
@@ -97,7 +91,6 @@ function App() {
           userId: info._id,
           _id: info._id,
         });
-        console.log(currentUser);
       })
       .catch((invalid) => {
         console.error("invalid message", invalid);
@@ -185,19 +178,9 @@ function App() {
     setOpen(false);
   };
 
-  /*  const checkUserInfo = () => {
-    auth.getUserInfo().then(({ data }) => {
-      if (data) {
-        setEmail(data.email);
-        setIsLoggedIn(true);
-        navigate("/home");
-      }
-    });
-  }; */
-
   const handleLogOut = () => {
     localStorage.removeItem("jwt");
-    setCurrentUser();
+
     setIsLoggedIn(false);
     navigate("/login");
   };
@@ -207,16 +190,21 @@ function App() {
       return;
     }
 
-    auth.login(data.email, data.password).then((data) => {
-      console.log(data);
-      if (data.token) {
-        //setEmail(data.email);
-        setToken(data.token);
-        setIsLoggedIn(true);
-        navigate("/home");
-        //redireccionar a ruta home
-      }
-    });
+    auth
+      .login(data.email, data.password)
+      .then((data) => {
+        if (data.token) {
+          setEmail(data.email);
+          setToken(data.token);
+          setIsLoggedIn(true);
+          navigate("/home");
+        }
+      })
+      .catch((error) => {
+        setOpen(true);
+        setIsRegistered(false);
+        console.error;
+      });
   };
 
   useEffect(() => {
@@ -239,7 +227,6 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
-      // checkUserInfo();
     } else {
       navigate("/login");
     }
@@ -266,7 +253,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header handleLogOut={handleLogOut} />
+        <Header handleLogOut={handleLogOut} email={userEmail} />
         <Routes>
           <Route
             path="/home"
@@ -310,7 +297,6 @@ function App() {
               </ProtectedRoute>
             }
           ></Route>
-          //TODO: Implementar version movil
           <Route path="/login" element={<Login onLogin={onLogin} />} />
           <Route
             path="/register"

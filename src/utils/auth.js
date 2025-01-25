@@ -10,7 +10,6 @@ export async function login(email, password) {
       },
     });
     const token = await response.json();
-    console.log(token);
     return token;
   } catch (err) {
     console.error(err);
